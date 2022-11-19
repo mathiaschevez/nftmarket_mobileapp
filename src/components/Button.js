@@ -1,18 +1,41 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity, Image, InteractionManager } from 'react-native'
 import React from 'react'
+import { COLORS, SIZES, FONTS, SHADOWS } from '../../constants'
+import tw from 'twrnc'
 
-export const CircleButton = () => {
+export const CircleButton = ({ imgUrl, handlePress, ...props}) => {
+  const styles = {
+    circleButton: tw`w-[40[px] h-[40px] rounded-full bg-[${COLORS.white}] absolute items-center justify-center shadow-lg shadow-white right-[${props.right}px] top-[${props.top}px]`,
+  }
+
   return (
-    <View>
-      <Text>CircleButton</Text>
-    </View>
+    <TouchableOpacity
+      style={styles.circleButton}
+      handlePress={handlePress}
+    >
+      <Image 
+        source={imgUrl}
+        resizeMode='contain'
+        style={tw`w-[24px] h-[24px]`}
+      />
+    </TouchableOpacity>
   )
 }
 
-export const RectButton = () => {
+export const RectButton = ({ minWidth, fontSize, handlePress }) => {
+  const styles={
+    rectButton: tw`rounded-full bg-[${COLORS.primary}] min-w-[${minWidth}px] p-[${SIZES.small}]`
+  }
+
   return (
-    <View>
-      <Text>RectButton</Text>
-    </View>
+    <TouchableOpacity
+      style={styles.rectButton}
+      handlePress={handlePress}
+    >
+      <Text style={tw`font-[${FONTS.semiBold}] text-[${fontSize}px] text-[${COLORS.white}] text-center`}>
+        Place a bid
+      </Text>
+    </TouchableOpacity>
   )
 }
+

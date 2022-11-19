@@ -11,9 +11,9 @@ const Home = () => {
       <FocusedStatusBar background={COLORS.primary}/>
       <View style={tw`flex flex-1 z-10`}>
         <FlatList
-          data={NFTData}
+          data={NFTData.slice(1)}
           renderItem={({item}) => <NFTCard item={item}/>} 
-          // ^^^^^ needs to be deconstructed twice. Example - {item: item: {name: 'name'}}
+          // ^^^^^ needs to be deconstructed twice. Example - {item: {item: {name: 'name'}}}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={<HomeHeader/>}
