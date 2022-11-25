@@ -7,7 +7,6 @@ import { ETHPrice } from '../components/SubInfo'
 
 const Details = ({ route, navigation }) => {
   const { item } = route.params
-  console.log(item)
 
   return (
     <SafeAreaView style={tw`bg-[${COLORS.secondary}] h-full w-full`}>

@@ -13,10 +13,8 @@ const Home = () => {
         <FlatList
           data={NFTData.slice(1)}
           renderItem={({item}) => <NFTCard item={item}/>} 
-          // ^^^^^ needs to be deconstructed twice. Example - {item: {item: {name: 'name'}}}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={<HomeHeader/>}
         />
       </View>
       <View style={tw`absolute top-0 bottom-0 right-0 left-0`}>

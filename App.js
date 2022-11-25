@@ -1,8 +1,15 @@
 import { createStackNavigator } from '@react-navigation/stack'
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import Home from './src/screens/Home';
 import Details from './src/screens/Details';
+import { HomeHeader } from './src/components';
+import { Text } from 'react-native';
+import DetailHeader from './src/components/headers/DetailHeader';
+import { COLORS } from './constants';
+import { TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements'
+import tw from 'twrnc'
 
 const Stack = createStackNavigator();
 const { Screen, Navigator } = Stack
@@ -23,11 +30,48 @@ const App = () => {
 
   if(!loaded) return null
 
+  const PreviousScreenButton = ({ onPress }) => {
+    return (
+      <TouchableOpacity 
+        onPress={onPress}
+        style={tw`w-10 h-10 items-center justify-center`}
+      >
+        <Icon 
+          name='arrow-back'
+          color={COLORS.white}
+        />
+      </TouchableOpacity>
+    )
+  }
+
   return (
     <NavigationContainer>
-      <Navigator screenOptions={{headerShown: false}} initialRouteName='Home'>
-        <Screen name='Home' component={Home}/>
-        <Screen name='Details' component={Details}/>
+      <Navigator initialRouteName='Home'>
+        <Screen 
+          name='Home' 
+          component={Home}
+          options={{
+            headerShown: true,
+            headerTitle: () => <HomeHeader />,
+            headerStyle: {
+              backgroundColor: COLORS.primary,
+            },
+            headerShadowVisible: false,
+          }}
+        />
+        <Screen 
+          name='Details' 
+          component={Details}
+          options={({navigation}) => ({
+            headerShown: true,
+            headerTitle: () => <DetailHeader />,
+            headerStyle: {
+              backgroundColor: `${COLORS.primary}`,
+            },
+            headerShadowVisible: false,
+            headerLeft: () => <PreviousScreenButton navigation={navigation} onPress={() => navigation.goBack()}/>
+          })}
+        />
       </Navigator>
     </NavigationContainer>
   );
