@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, Image, InteractionManager } from 'react-native'
+import { Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import { COLORS, SIZES, FONTS, SHADOWS } from '../../constants'
+import { COLORS, SIZES, FONTS } from '../../constants'
 import tw from 'twrnc'
 
 export const CircleButton = ({ imgUrl, handlePress, ...props}) => {
@@ -11,7 +11,7 @@ export const CircleButton = ({ imgUrl, handlePress, ...props}) => {
   return (
     <TouchableOpacity
       style={styles.circleButton}
-      handlePress={handlePress}
+      handlePress={(handlePress)}
     >
       <Image 
         source={imgUrl}
@@ -30,7 +30,7 @@ export const RectButton = ({ minWidth, fontSize, handlePress }) => {
   return (
     <TouchableOpacity
       style={styles.rectButton}
-      handlePress={handlePress}
+      onPress={handlePress}
     >
       <Text style={tw`font-[${FONTS.semiBold}] text-[${fontSize}px] text-[${COLORS.white}] text-center`}>
         Place a bid

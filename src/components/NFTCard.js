@@ -28,7 +28,7 @@ const NFTCard = ({ item }) => {
           subtitleSize={SIZES.small}
         />
         <View style={tw`mt-[${SIZES.font}] flex flex-row justify-between items-center`}>
-          <ETHPrice price={item.price}/>
+          <ETHPrice price={item.price} color={COLORS.primary}/>
           <RectButton 
             minWidth={120} 
             fontSize={SIZES.font} 

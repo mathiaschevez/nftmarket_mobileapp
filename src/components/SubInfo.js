@@ -14,7 +14,7 @@ export const NFTTitle = ({ title, subtitle, titleSize, subtitleSize }) => {
   )
 }
 
-export const ETHPrice = ({ price }) => {
+export const ETHPrice = ({ price, color }) => {
   return (
     <View style={tw`flex flex-row items-center`}>
       <Image 
@@ -22,7 +22,7 @@ export const ETHPrice = ({ price }) => {
         resizeMode='contain'
         style={tw`w-[20px] h-[20px] mr-[2px]`}
       />
-      <Text style={tw`font-[${FONTS.medium}] text-[${SIZES.font}px] text-[${COLORS.primary}]`}>
+      <Text style={tw`font-[${FONTS.medium}] text-[${SIZES.font}px] text-[${color}]`}>
         {price}
       </Text>
     </View>
